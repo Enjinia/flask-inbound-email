@@ -10,7 +10,7 @@ readme = "README.md"
 requires-python = ">=3.10"
 license = "Apache-2.0"
 license-files = ["LICENSE", "NOTICE"]
-authors = [{ name = "Pedro", email = "pedro75@gmail.com" }]
+authors = [{ name = "MyGibbs", email = "pedro75@gmail.com" }]
 maintainers = [{ name = "Enjinia" }]
 keywords = ["flask", "email", "inbound", "amazon-ses", "forwarding", "ics", "attachments"]
 classifiers = [
