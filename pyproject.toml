@@ -1,0 +1,63 @@
+[build-system]
+requires = ["hatchling>=1.27"]
+build-backend = "hatchling.build"
+
+[project]
+name = "flask-inbound-email"
+dynamic = ["version"]
+description = "Give every user of your Flask app their own email address: forwarded emails, attachments and calendar invites arrive already read."
+readme = "README.md"
+requires-python = ">=3.10"
+license = "Apache-2.0"
+license-files = ["LICENSE", "NOTICE"]
+authors = [{ name = "Pedro", email = "pedro75@gmail.com" }]
+maintainers = [{ name = "Enjinia" }]
+keywords = ["flask", "email", "inbound", "amazon-ses", "forwarding", "ics", "attachments"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Framework :: Flask",
+    "Intended Audience :: Developers",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Communications :: Email",
+]
+dependencies = [
+    "Flask>=2.3",
+    "icalendar>=5.0",
+    "Pillow>=10.0",
+]
+
+[project.optional-dependencies]
+aws = ["boto3>=1.28"]
+dev = ["pytest>=8", "ruff>=0.6", "boto3>=1.28", "moto[s3,sns,sqs,ses,iam,sts]>=5.0"]
+
+[project.scripts]
+inbound-email-aws-setup = "flask_inbound_email.aws_setup:main"
+
+[project.urls]
+Homepage = "https://github.com/enjinia/flask-inbound-email"
+Issues = "https://github.com/enjinia/flask-inbound-email/issues"
+Changelog = "https://github.com/enjinia/flask-inbound-email/blob/main/CHANGELOG.md"
+
+[tool.hatch.version]
+path = "src/flask_inbound_email/__init__.py"
+
+[tool.hatch.build.targets.sdist]
+include = ["src", "tests", "examples", "LICENSE", "NOTICE", "README.md", "CHANGELOG.md"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/flask_inbound_email"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP"]
